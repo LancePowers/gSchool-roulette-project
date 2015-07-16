@@ -89,17 +89,18 @@ function turn(){
   if (inputStr === result.toString()) {
     chips += ( parseInt(bet) * parseInt(slot[2]) );
     console.log(chips);
-    alert(/*num + ", " + color + " " +*/ "Win! " + chips + " chips left");
+    alert(/*randomSpin() num + ", " + color + " " +*/ "Win! " + chips + " chips left");
   } else {
     chips -= (parseInt(bet));
-    alert(/*num + ", " + color + " " +*/ "Lose " + chips + " chips left");
+    alert(/*randomSpin() num + ", " + color + " " +*/ "Lose " + chips + " chips left");
   }
   nextTurn();
 }
 
 function nextTurn(){
   var playAgain = prompt("Would you like to play again? Y or N?");
-  if (playAgain === "Y") {
+  //var again = playAgain;
+  if (playAgain.toUpperCase() === "Y") {
     turn();
   } else {
     return alert ("Thanks for playing!")
