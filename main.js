@@ -66,12 +66,20 @@ function turn(){
   }
 
   var spot = spin();
+  console.log(spot);
+  // var num = the number picked.
   var num = wheel[spot-1].num;
+  console.log(num);
+  // var color = color in relation to num.
   var color = wheel[spot-1].color;
+  console.log(color);
+  // var odds = the odds in relation to num and color.
   var odds = wheel[spot-1].odds;
-
+  console.log(odds);
   return [num, color, odds];
- }
+
+
+}
 
 
   var inputStr = input();
@@ -81,16 +89,17 @@ function turn(){
   if (inputStr === result.toString()) {
     chips += ( parseInt(bet) * parseInt(slot[2]) );
     console.log(chips);
-    alert("Win! " + chips + " chips left");
+    alert(/*randomSpin()*/num + ", " + color + " " + "Win! " + chips + " chips left");
   } else {
     chips -= (parseInt(bet));
-    alert("Lose " + chips + " chips left");
+    alert(/*randomSpin()*/num + ", " + color + " " + "Lose " + chips + " chips left");
   }
   nextTurn();
 }
+
 function nextTurn(){
   var playAgain = prompt("Would you like to play again? Y or N?");
-  if (playAgain === "Y") {
+  if (playAgain.toUpperCase === "Y") {
     turn();
   }
 }
