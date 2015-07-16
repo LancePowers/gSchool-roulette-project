@@ -8,13 +8,13 @@ function turn(){
   function input() {
     bet = prompt("You have $" + chips + ". How much would you like to bet?");
     while (bet>chips) {
-      bet = prompt("Sorry, but you only have " + chips + " How much would you like to bet?");
+      /*bet =*/ return prompt("Sorry, but you only have " + chips + " How much would you like to bet?");
     }
     var userInput = prompt ("Pick a number 1-36");
-    while ((userInput > 36) ||(userInput < 0)) {
-      userInput = prompt ("Sorry that's not a number 1-36. Try again");
+    while ((userInput > 36) || (userInput < 1)) {
+    /*userInput =*/ return prompt ("Sorry that's not a number 1-36. Try again");
     }
-    return userInput;
+    //return userInput;
   }
 // function to return spot number and color as an array
   function randomSpin(){
@@ -59,13 +59,13 @@ function turn(){
     {num: 36, color: red, odds: 35}
   ];
 
-
-  function spin(){
+// not needed function.
+/*  function spin(){
     var spot = Math.floor(Math.random() * wheel.length);
     return spot;
-  }
+  } */
 
-  var spot = spin();
+  var spot = Math.floor(Math.random() * wheel.length);
   console.log(spot);
   // var num = the number picked.
   var num = wheel[spot-1].num;
@@ -89,17 +89,19 @@ function turn(){
   if (inputStr === result.toString()) {
     chips += ( parseInt(bet) * parseInt(slot[2]) );
     console.log(chips);
-    alert(/*randomSpin()*/num + ", " + color + " " + "Win! " + chips + " chips left");
+    alert(/*num + ", " + color + " " +*/ "Win! " + chips + " chips left");
   } else {
     chips -= (parseInt(bet));
-    alert(/*randomSpin()*/num + ", " + color + " " + "Lose " + chips + " chips left");
+    alert(/*num + ", " + color + " " +*/ "Lose " + chips + " chips left");
   }
   nextTurn();
 }
 
 function nextTurn(){
   var playAgain = prompt("Would you like to play again? Y or N?");
-  if (playAgain.toUpperCase === "Y") {
+  if (playAgain === "Y") {
     turn();
+  } else {
+    return alert ("Thanks for playing!")
   }
 }
