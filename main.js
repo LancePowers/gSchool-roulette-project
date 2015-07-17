@@ -1,14 +1,17 @@
 //commit made by Crystal O'Mara
 //Function to get and verify users input
 var chips = 100;
-var bet;
+var bet = 0;
 turn();
 
 function turn(){
   function input() {
     bet = prompt("You have $" + chips + ". How much would you like to bet?");
     while (bet>chips) {
-      /*bet =*/ return prompt("Sorry, but you only have " + chips + " How much would you like to bet?");
+      /*bet = return*/ return prompt("Sorry, but you only have " + chips + " How much would you like to bet?");
+    }
+    while (bet < 1) {
+      return prompt("Sorry, but you have to bet at least one chip. How much would you like to bet? You have " + chips + " chips left.")
     }
     var userInput = prompt ("Pick a number 1-36");
     while ((userInput > 36) || (userInput < 1)) {
@@ -89,10 +92,10 @@ function turn(){
   if (inputStr === result.toString()) {
     chips += ( parseInt(bet) * parseInt(slot[2]) );
     console.log(chips);
-    alert(/*randomSpin() num + ", " + color + " " +*/ "Win! " + chips + " chips left");
+    alert(/*randomSpin() num + ", " + color + " " +*/ + " " + "Win! " + chips + " chips left");
   } else {
     chips -= (parseInt(bet));
-    alert(/*randomSpin() num + ", " + color + " " +*/ "Lose " + chips + " chips left");
+    alert(/*randomSpin() num + ", " + color + " " +*/  + " " + "Lose " + chips + " chips left");
   }
   nextTurn();
 }
@@ -103,6 +106,6 @@ function nextTurn(){
   if (playAgain.toUpperCase() === "Y") {
     turn();
   } else {
-    return alert ("Thanks for playing!")
+    alert ("Thanks for playing!")
   }
 }
