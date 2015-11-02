@@ -1,97 +1,114 @@
-//commit made by Crystal O'Mara
-//Function to get and verify users input
-var chips = 100;
-var bet = 0;
-turn();
+/*BUGS: validate bet outside of input function, have to enter a number for bet otherwise produces NaN, if dont enter y or n at end, just says thanks for playing, if bet more than you have will return a negative value after play*/
 
-function turn(){
-  function input() {
-    bet = prompt("You have $" + chips + ". How much would you like to bet?");
-    while (bet>chips) {
-      /*bet = return*/ return prompt("Sorry, but you only have " + chips + " How much would you like to bet?");
-    }
-    while (bet < 1) {
-      return prompt("Sorry, but you have to bet at least one chip. How much would you like to bet? You have " + chips + " chips left.")
-    }
+turn(100, 0);
+//in: nothing, process:get how many chips were bet and user game bet, out:number of chips bet, user game bet
+function turn(chips, bet){
+
+
+
+  // var chips = 100;
+  // var bet = 0;
+  function inputPrompts(){
     var userInput = prompt ("Pick a number 1-36");
-    while ((userInput > 36) || (userInput < 1)) {
-    /*userInput =*/ return prompt ("Sorry that's not a number 1-36. Try again");
+
+    bet = prompt("You have $" + chips + ". How much would you like to bet?");
+
+    while (bet>chips) {
+      /*bet = return*/
+      return prompt("Sorry, but you only have " + chips + " How much would you like to bet?");
     }
-    //return userInput;
+
+    while (bet < 1) {
+      return prompt("Sorry, but you have to bet at least one chip. How much would you like to bet? You have " + chips + " chips left.");
+    }
+
+    while ((userInput > 36) || (userInput < 1)) {
+    /*userInput =*/
+    return prompt ("Sorry that's not a number 1-36. Try again");
+    }
+    // return [bet, chips];
   }
-// function to return spot number and color as an array
-  function randomSpin(){
-  var red = "red";
-  var black = "black";
+}
+// in: position desired on wheel, process: get position on wheel with other attributes, out: position on wheel with attributes
+  function createWheel(position){
   var wheel = [
-    {num: 1, color: red, odds: 35},
-    {num: 2, color: black, odds: 35},
-    {num: 3, color: red, odds: 35},
-    {num: 4, color: black, odds: 35},
-    {num: 5, color: red, odds: 35},
-    {num: 6, color: black, odds: 35},
-    {num: 7, color: red, odds: 35},
-    {num: 8, color: black, odds: 35},
-    {num: 9, color: red, odds: 35},
-    {num: 10, color: black, odds: 35},
-    {num: 11, color: black, odds: 35},
-    {num: 12, color: red, odds: 35},
-    {num: 13, color: black, odds: 35},
-    {num: 14, color: red, odds: 35},
-    {num: 15, color: black, odds: 35},
-    {num: 16, color: red, odds: 35},
-    {num: 17, color: black, odds: 35},
-    {num: 18, color: red, odds: 35},
-    {num: 19, color: red, odds: 35},
-    {num: 20, color: black, odds: 35},
-    {num: 21, color: red, odds: 35},
-    {num: 22, color: black, odds: 35},
-    {num: 23, color: red, odds: 35},
-    {num: 24, color: black, odds: 35},
-    {num: 25, color: red, odds: 35},
-    {num: 26, color: black, odds: 35},
-    {num: 27, color: red, odds: 35},
-    {num: 28, color: black, odds: 35},
-    {num: 29, color: black, odds: 35},
-    {num: 30, color: red, odds: 35},
-    {num: 31, color: black, odds: 35},
-    {num: 32, color: red, odds: 35},
-    {num: 33, color: black, odds: 35},
-    {num: 34, color: red, odds: 35},
-    {num: 35, color: black, odds: 35},
-    {num: 36, color: red, odds: 35}
+    {num: 1, color: "red"},
+    {num: 2, color: "black"},
+    {num: 3, color: "red"},
+    {num: 4, color: "black"},
+    {num: 5, color: "red"},
+    {num: 6, color: "black"},
+    {num: 7, color: "red"},
+    {num: 8, color: "black"},
+    {num: 9, color: "red"},
+    {num: 10, color: "black"},
+    {num: 11, color: "black"},
+    {num: 12, color: "red"},
+    {num: 13, color: "black"},
+    {num: 14, color: "red"},
+    {num: 15, color: "black"},
+    {num: 16, color: "red"},
+    {num: 17, color: "black"},
+    {num: 18, color: "red"},
+    {num: 19, color: "red"},
+    {num: 20, color: "black"},
+    {num: 21, color: "red"},
+    {num: 22, color: "black"},
+    {num: 23, color: "red"},
+    {num: 24, color: "black"},
+    {num: 25, color: "red"},
+    {num: 26, color: "black"},
+    {num: 27, color: "red"},
+    {num: 28, color: "black"},
+    {num: 29, color: "black"},
+    {num: 30, color: "red"},
+    {num: 31, color: "black"},
+    {num: 32, color: "red"},
+    {num: 33, color: "black"},
+    {num: 34, color: "red"},
+    {num: 35, color: "black"},
+    {num: 36, color: "red"},
+    {num: 0, color: "green"},
+    {num: 00, color: "green"}
   ];
-
-// not needed function.
-/*  function spin(){
-    var spot = Math.floor(Math.random() * wheel.length);
-    return spot;
-  } */
-
-  var spot = Math.floor(Math.random() * wheel.length);
-  console.log(spot);
-  // var num = the number picked.
-  var num = wheel[spot-1].num;
-  console.log(num);
-  // var color = color in relation to num.
-  var color = wheel[spot-1].color;
-  console.log(color);
-  // var odds = the odds in relation to num and color.
-  var odds = wheel[spot-1].odds;
-  console.log(odds);
-  return [num, color, odds];
-
-
+  return wheel[position];
 }
 
+//in: nothing, process:take a position from the wheel and randomize it out:randomized generated spot from the wheel
+function randomSpin(){
+  var randomizeSpot = Math.floor(Math.random() * 38);
+  var generatedSpot = createWheel(randomizeSpot);
+  return generatedSpot;
+};
 
+//in: nothing, process: take the randomally generated spot and get the attributes associated with it, put them into accessible array, out: attributes of spot in array
+function seperateRandomOutput(wheelPosition){
+  var wheelColor = wheelPosition.color;
+  var wheelNumber = wheelPosition.num;
+  var gameSpot = [wheelNumber, wheelColor];
+  return gameSpot;
+}
+
+//in: take user spot bet and actual game spot, process: compare user spot to game spot, out: if match, true, if don't match, false
+function compare(userSpot, gameSpot){
+  userSpot =
+  gameSpot = seperateRandomOutput(randomSpin());
+  if (userSpot === gameSpot){
+    true
+  }
+  else{
+    false
+  }
+  return
+}
+compare();
+//in: nothing? process: compare input to randomally generated spot, out:output the randomally generated number compared to the user game input number/bet and say if win or lose and how many chips user has left
+function outputInfo(){
   var inputStr = input();
   var slot = randomSpin();
   var result = slot[0];
-
   if (inputStr === result.toString()) {
     chips += ( parseInt(bet) * parseInt(slot[2]) );
-    console.log(chips);
     alert(/*randomSpin() num + ", " + color + " " +*/ + " " + "Win! " + chips + " chips left");
   } else {
     chips -= (parseInt(bet));
